@@ -3,61 +3,207 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Perpustakaan Digital Sekolah</title>
+    <title>Perpustakaan SMK Negeri 4 Sukabumi</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    
     <style>
-        body { background-color: #f8f9fa; }
-        .hero { 
-            /* Menggabungkan warna biru transparan dengan foto Anda agar teks tetap terbaca */
-            background: linear-gradient(rgba(13, 110, 253, 0.8), rgba(13, 110, 253, 0.8)), url('bg-perpus.jpg') no-repeat center center; 
-            background-size: cover;
-            color: white; 
-            padding: 60px 0; 
-            text-align: center; 
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #fcfcfc;
+            color: #1e1e1e;
         }
-        .section-padding { padding: 40px 0; }
+        /* Ciri khas Harvard: Header Gelap & Aksen Merah Marun/Crimson */
+        .navbar-harvard {
+            background-color: #1e1e1e;
+            border-bottom: 4px solid #A51C30; /* Warna Merah Crimson Harvard */
+        }
+        .navbar-brand {
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+            color: white !important;
+            letter-spacing: 1px;
+        }
+        /* Hero Section ala Harvard: Minimalis & Fokus ke Pencarian */
+        .hero-section {
+            background-color: #1e1e1e;
+            color: white;
+            padding: 100px 0 80px 0;
+            text-align: center;
+        }
+        .hero-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
+        /* Kotak Pencarian Besar di Tengah */
+        .search-box-container {
+            max-width: 700px;
+            margin: 0 auto;
+            position: relative;
+        }
+        .search-input {
+            width: 100%;
+            padding: 18px 25px;
+            font-size: 1.2rem;
+            border: none;
+            border-radius: 4px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+        /* Kartu Menu Utama di bawah */
+        .card-menu {
+            border: none;
+            border-radius: 0;
+            background: white;
+            transition: all 0.3s ease;
+            border-top: 3px solid #e0e0e0;
+        }
+        .card-menu:hover {
+            transform: translateY(-5px);
+            border-top: 3px solid #A51C30;
+            box-shadow: 0 15px 30px rgba(0,0,0,0.05);
+        }
+        .card-title-harvard {
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+        }
+        .btn-harvard {
+            background-color: #A51C30;
+            color: white;
+            border-radius: 0;
+            padding: 10px 20px;
+        }
+        .btn-harvard:hover {
+            background-color: #821424;
+            color: white;
+        }
     </style>
 </head>
 <body>
 
-   <div class="hero">
-        <img src="Logo Perpustakaan Baru.png" alt="Logo Perpustakaan Baru" style="height: 90px; margin-bottom: 15px; filter: drop-shadow(2px 4px 6px rgba(0,0,0,0.2));">
-        
-        <h1>Perpustakaan Digital SMK Negeri 4 Sukabumi</h1>
-        <p>Membaca Membuka Jendela Dunia</p>
+    <nav class="navbar navbar-harvard navbar-expand-lg py-3">
+        <div class="container">
+            <a class="navbar-brand" href="#">PERPUSTAKAAN SEKOLAH</a>
+            <div class="text-white-50 small">SMAN 1 DIGITAL KOTA</div>
+        </div>
+    </nav>
+
+    <div class="hero-section">
+        <div class="container">
+            <h1 class="hero-title">Cari Koleksi Buku & Literasi</h1>
+            <p class="text-white-50 mb-5">Temukan ribuan buku, jurnal, dan sumber daya digital sekolah Anda.</p>
+            
+            <div class="search-box-container">
+                <input type="text" id="bukuSearch" onkeyup="cariBukuInstan()" class="search-input" placeholder="Ketik judul buku, pengarang, atau kata kunci...">
+            </div>
+        </div>
     </div>
 
-    <div class="container section-padding">
-        <div class="row">
-            <div class="col-md-4 mb-4">
-                <div class="card p-3 shadow-sm">
-                    <h4>Jam Operasional</h4>
-                    <p>Senin - Jumat: 07.30 - 15.00 WIB<br>Sabtu & Minggu: Tutup</p>
-                    <hr>
-                    <h4>Alur Peminjaman</h4>
-                    <ol>
-                        <li>Cari buku di tabel katalog.</li>
-                        <li>Ambil buku di ruang perpustakaan fisik.</li>
-                        <li>Isi formulir peminjaman.</li>
-                    </ol>
+    <div class="container my-5">
+        <div class="row g-4">
+            <div class="col-md-4">
+                <div class="card card-menu p-4 h-100 shadow-sm">
+                    <h4 class="card-title-harvard mb-3">Form Peminjaman</h4>
+                    <p class="text-muted">Sudah menemukan buku yang cocok? Isi formulir digital untuk langsung memesan buku.</p>
+                    <a href="#link-google-form-anda" class="btn btn-harvard mt-auto">Isi Formulir Pinjam</a>
                 </div>
             </div>
-
-            <div class="col-md-8">
-                <div class="card p-3 shadow-sm mb-4">
-                    <h3 class="mb-3">📚 Katalog Buku</h3>
-                    <p>Cari dan cek ketersediaan buku di bawah ini:</p>
-                    <p class="text-muted">[<iframe src="https://docs.google.com/spreadsheets/d/e/2PACX-1vT_F3mFjRz6YYhIwstDEGkbvP7y15c5iIdK_MXPL0ODWHAkORJBM0mlERsV-yP1TFlfWnGNayl_ZbS5/pubhtml?widget=true&amp;headers=false"></iframe>]</p>
+            <div class="col-md-4">
+                <div class="card card-menu p-4 h-100 shadow-sm">
+                    <h4 class="card-title-harvard mb-3">Jam Operasional</h4>
+                    <p class="text-muted">Senin - Jumat: 07.30 - 15.30 WIB<br>Sabtu - Minggu: Tutup (Kecuali Ujian)</p>
+                    <a href="#" class="text-decoration-none mt-auto" style="color:#A51C30;">Lihat Aturan Lengkap &rarr;</a>
                 </div>
-
-                <div class="card p-3 shadow-sm">
-                    <h3 class="mb-3">✍️ Formulir Peminjaman</h3>
-                    <p>Silakan isi form ini untuk memesan/meminjam buku:</p>
-                    <p class="text-muted">[<iframe src="https://docs.google.com/forms/d/e/1FAIpQLSeWNDkY2o5DZt4GVz32NnoPn9FxLUSLt9-9POTUWJcfjRUTSg/viewform?embedded=true" width="640" height="1309" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>]</p>
+            </div>
+            <div class="col-md-4">
+                <div class="card card-menu p-4 h-100 shadow-sm">
+                    <h4 class="card-title-harvard mb-3">Tanya Pustakawan</h4>
+                    <p class="text-muted">Butuh bantuan mencari bahan referensi tugas akhir atau karya ilmiah? Hubungi kami.</p>
+                    <a href="https://wa.me/628123456789" class="btn btn-dark mt-auto" style="border-radius:0;">Hubungi via WhatsApp</a>
                 </div>
             </div>
         </div>
     </div>
 
+    <div class="container mb-5">
+        <div class="card p-4 shadow-sm" style="border:none; border-radius:4px;">
+            <h3 class="card-title-harvard mb-4">📚 Hasil Pencarian Katalog</h3>
+            
+            <div class="table-responsive">
+                <table class="table table-hover" id="tabelBuku">
+                    <thead>
+                        <tr style="border-bottom: 2px solid #1e1e1e;">
+                            <th>Kode</th>
+                            <th>Judul Buku</th>
+                            <th>Pengarang</th>
+                            <th>Kategori</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>B001</td>
+                            <td><strong>Laskar Pelangi</strong></td>
+                            <td>Andrea Hirata</td>
+                            <td>Fiksi / Novel</td>
+                            <td><span class="badge bg-success">Tersedia</span></td>
+                        </tr>
+                        <tr>
+                            <td>B002</td>
+                            <td><strong>Fisika Dasar Kelas XI</strong></td>
+                            <td>Prof. Supriyadi</td>
+                            <td>Buku Pelajaran</td>
+                            <td><span class="badge bg-danger">Dipinjam</span></td>
+                        </tr>
+                        <tr>
+                            <td>B003</td>
+                            <td><strong>Bumi Manusia</strong></td>
+                            <td>Pramoedya Ananta Toer</td>
+                            <td>Sejarah / Novel</td>
+                            <td><span class="badge bg-success">Tersedia</span></td>
+                        </tr>
+                        <tr>
+                            <td>B004</td>
+                            <td><strong>Sejarah Dunia yang Disembunyikan</strong></td>
+                            <td>Jonathan Black</td>
+                            <td>Non-Fiksi</td>
+                            <td><span class="badge bg-success">Tersedia</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function cariBukuInstan() {
+            let input = document.getElementById("bukuSearch");
+            let filter = input.value.toLowerCase();
+            let table = document.getElementById("tabelBuku");
+            let tr = table.getElementsByTagName("tr");
+
+            for (let i = 1; i < tr.length; i++) {
+                let tdJudul = tr[i].getElementsByTagName("td")[1];
+                let tdPengarang = tr[i].getElementsByTagName("td")[2];
+                let tdKategori = tr[i].getElementsByTagName("td")[3];
+                
+                if (tdJudul || tdPengarang || tdKategori) {
+                    let txtJudul = tdJudul.textContent || tdJudul.innerText;
+                    let txtPengarang = tdPengarang.textContent || tdPengarang.innerText;
+                    let txtKategori = tdKategori.textContent || tdKategori.innerText;
+                    
+                    if (
+                        txtJudul.toLowerCase().indexOf(filter) > -1 || 
+                        txtPengarang.toLowerCase().indexOf(filter) > -1 ||
+                        txtKategori.toLowerCase().indexOf(filter) > -1
+                    ) {
+                        tr[i].style.display = "";
+                    } else {
+                        tr[i].style.display = "none";
+                    }
+                }       
+            }
+        }
+    </script>
 </body>
 </html>
