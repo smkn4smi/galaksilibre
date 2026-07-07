@@ -260,32 +260,46 @@
         </div>
     </div>
     <script>
-        function cariBukuInstan() {
-            let input = document.getElementById("bukuSearch");
-            let filter = input.value.toLowerCase();
-            let table = document.getElementById("tabelBuku");
-            let tr = table.getElementsByTagName("tr");
+       function cariBukuInstan() {
+    let input = document.getElementById("inputCariBuku").value.toLowerCase().trim();
+    let tabel = document.getElementById("tabelBuku");
+    let tbody = tabel.getElementsByTagName("tbody")[0];
+    let baris = tbody.getElementsByTagName("tr");
+    let jumlahBukuCocok = 0;
 
-            for (let i = 1; i < tr.length; i++) {
-                let tdJudul = tr[i].getElementsByTagName("td")[1];
-                let tdPengarang = tr[i].getElementsByTagName("td")[2];
-                let tdKategori = tr[i].getElementsByTagName("td")[3];
-                
-                if (tdJudul || tdPengarang || tdKategori) {
-                    let txtJudul = tdJudul.textContent || tdJudul.innerText;
-                    let txtPengarang = tdPengarang.textContent || tdPengarang.innerText;
-                    let txtKategori = tdKategori.textContent || tdKategori.innerText;
-                    
-                    if (
-                        txtJudul.toLowerCase().indexOf(filter) > -1 || 
-                        txtPengarang.toLowerCase().indexOf(filter) > -1 ||
-                        txtKategori.toLowerCase().indexOf(filter) > -1
-                    ) {
-                        tr[i].style.display = "";
-                    } else {
-                        tr[i].style.display = "none";
-                    }
-                }       
+    // Hapus pesan "Tidak Ditemukan" yang lama jika sebelumnya sudah ada
+    let pesanLama = document.getElementById("barisPesanKosong");
+    if (pesanLama) {
+        pesanLama.remove();
+    }
+
+    // Loop untuk menyisir setiap baris data buku
+    for (let i = 0; i < baris.length; i++) {
+        let teksBaris = baris[i].textContent.toLowerCase();
+        
+        if (teksBaris.includes(input)) {
+            baris[i].style.display = ""; // Tampilkan jika cocok
+            jumlahBukuCocok++;
+        } else {
+            baris[i].style.display = "none"; // Sembunyikan jika tidak cocok
+        }
+    }
+
+    // JIKA TIDAK ADA BUKU YANG COCOK (jumlahBukuCocok === 0)
+    if (jumlahBukuCocok === 0 && input !== "") {
+        // Buat baris baru secara otomatis di dalam tabel untuk menampilkan pesan
+        let barisBaru = document.createElement("tr");
+        barisBaru.id = "barisPesanKosong";
+        barisBaru.innerHTML = `
+            <td colspan="5" class="text-center py-4 bg-light text-secondary">
+                <div class="mb-2" style="font-size: 1.5rem;">🔍⚠️</div>
+                <h6 class="fw-bold text-dark mb-1">Buku Tidak Ditemukan</h6>
+                <small>Maaf, kata kunci atau judul tersebut belum terdaftar dalam katalog GalaksiLibre.<br>Silakan cek kembali ejaan Anda atau usulkan buku ke Pustakawan.</small>
+            </td>
+        `;
+        tbody.appendChild(barisBaru);
+    }
+}
             }
         }
         // =======================================================
