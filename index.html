@@ -126,18 +126,18 @@
                     
                     <div class="d-flex justify-content-between align-items-center mb-3 p-2 border-bottom">
                         <div>
-                            <span class="fw-bold d-block">Pulpen</span>
-                            <small class="text-muted">Butuh 500 Poin</small>
+                            <span class="fw-bold d-block">Sticker</span>
+                            <small class="text-muted">Butuh 300 Poin</small>
                         </div>
-                        <button class="btn btn-sm btn-dark" onclick="tukarHadiah(500, 'PULPEN')">Tukarkan</button>
+                        <button class="btn btn-sm btn-dark" onclick="tukarHadiah(300, 'STICKER')">Tukarkan</button>
                     </div>
 
                     <div class="d-flex justify-content-between align-items-center mb-3 p-2 border-bottom">
                         <div>
-                            <span class="fw-bold d-block">Kupon pinjam buku 3 sekaligus</span>
-                            <small class="text-muted">Butuh 300 Poin</small>
+                            <span class="fw-bold d-block">Pulpen</span>
+                            <small class="text-muted">Butuh 200 Poin</small>
                         </div>
-                        <button class="btn btn-sm btn-dark" onclick="tukarHadiah(300, 'TAMBAH-PINJAM-BUKU')">Tukarkan</button>
+                        <button class="btn btn-sm btn-dark" onclick="tukarHadiah(200, 'PULPEN')">Tukarkan</button>
                     </div>
 
                     <div class="d-flex justify-content-between align-items-center p-2">
@@ -325,7 +325,6 @@
     </div>
 
     <script>
-        // Inisialisasi object Modal Bootstrap
         let modalPencarian;
         let elemenModal;
 
@@ -334,41 +333,31 @@
             modalPencarian = new bootstrap.Modal(elemenModal);
         });
 
-        // =======================================================
-        // LOGIKA PENYARINGAN UTAMA (DIPANGGIL SAAT MENGETIK DI HERO)
-        // =======================================================
         function cariBukuInstan() {
             let inputUtama = document.getElementById("inputCariBuku").value;
             
             if (inputUtama.trim() !== "") {
-                // Sinkronisasi teks ke input di dalam modal
                 document.getElementById("inputCariBukuModal").value = inputUtama;
-                
-                // Jalankan filter data
                 eksekusiFilterKatalog(inputUtama.toLowerCase().trim());
                 
-                // Hanya jalankan pemicu pop-up jika kondisi modal sedang tertutup (menghindari error macet)
                 if (!elemenModal.classList.contains('show')) {
                     modalPencarian.show();
                 }
             }
         }
 
-        // LOGIKA FILTER SAAT SISWA MENGEDIT DI DALAM MODAL POP-UP
         function cariBukuInstanModal() {
             let inputModal = document.getElementById("inputCariBukuModal").value;
-            document.getElementById("inputCariBuku").value = inputModal; // Sinkronisasi balik ke layar utama
+            document.getElementById("inputCariBuku").value = inputModal; 
             eksekusiFilterKatalog(inputModal.toLowerCase().trim());
         }
 
-        // INTI MESIN PENCARIAN & KONDISI TIDAK DITEMUKAN
         function eksekusiFilterKatalog(kataKunci) {
             let tabel = document.getElementById("tabelBuku");
             let tbody = tabel.getElementsByTagName("tbody")[0];
             let baris = tbody.getElementsByTagName("tr");
             let jumlahBukuCocok = 0;
 
-            // Bersihkan pesan kosong lama jika ada
             let pesanLama = document.getElementById("barisPesanKosong");
             if (pesanLama) { pesanLama.remove(); }
 
@@ -399,12 +388,9 @@
         function bersihkanPencarian() {
             document.getElementById("inputCariBuku").value = "";
             document.getElementById("inputCariBukuModal").value = "";
-            eksekusiFilterKatalog(""); // Reset data agar kembali normal
+            eksekusiFilterKatalog(""); 
         }
 
-        // =======================================================
-        // SYSTEM RESET POIN OTOMATIS TIAP BULAN BARU
-        // =======================================================
         let bulanIni = new Date().getMonth(); 
         let bulanTerakhirPoin = localStorage.getItem("bulanTerakhirPoin");
 
@@ -416,9 +402,6 @@
         let poinSekarang = localStorage.getItem("poinLiterasi") ? parseInt(localStorage.getItem("poinLiterasi")) : 0;
         document.getElementById("displayPoin").innerText = poinSekarang;
 
-        // =======================================================
-        // LOGIKA ABSEN KLAIM POIN HARIAN DIGITAL (+10)
-        // =======================================================
         function klaimPoinHarian() {
             let hariIni = new Date().toDateString(); 
             let terakhirCheckIn = localStorage.getItem("terakhirCheckIn");
@@ -436,9 +419,6 @@
             }
         }
 
-        // =======================================================
-        // LOGIKA KLAIM POIN OFFLINE MENGGUNAKAN TOKEN (+20)
-        // =======================================================
         function klaimPoinOffline() {
             let hariIni = new Date().toDateString();
             let terakhirToken = localStorage.getItem("terakhirTokenOffline");
@@ -466,9 +446,6 @@
             }
         }
 
-        // =======================================================
-        // LOGIKA PENUKARAN HADIAH POIN + AUTO GENERATE KODE
-        // =======================================================
         function tukarHadiah(biayaPoin, kodeKupon) {
             if (poinSekarang < biayaPoin) {
                 alert("⚠️ Poin Anda tidak cukup untuk menukarkan hadiah ini.");
@@ -492,24 +469,34 @@
         <div class="container">
             <div class="row g-4">
                 <div class="col-md-4 text-center text-md-start">
-                    <h4 style="font-family: 'Playfair Display', serif; font-weight: 700; letter-spacing: 1px; margin-bottom: 5px;">GALAKSILIBRE</h4>
+                    <div class="d-flex align-items-center justify-content-center justify-content-md-start mb-2">
+                        <img src="Logo Perpus.png" alt="Logo" style="height: 45px; margin-right: 12px;" onerror="this.style.display='none'">
+                        <h4 style="font-family: 'Playfair Display', serif; font-weight: 700; letter-spacing: 1px; margin: 0;">GALAKSILIBRE</h4>
+                    </div>
                     <p class="text-white-50 small">Sistem Informasi Perpustakaan Digital Sekolah</p>
                 </div>
                 <div class="col-md-4">
                     <h5 style="font-family: 'Playfair Display', serif; font-weight: 700; color: #A51C30; margin-bottom: 20px; letter-spacing: 0.5px;">Visi Kami</h5>
-                    <p class="text-white-50 small" style="line-height: 1.8; text-align: justify;">Menjadi pusat literasi dan sarana menggali potensi diri.</p>
+                    <p class="text-white-50 small" style="line-height: 1.8; text-align: justify;">Menjadi pusat literasi dan sarana menggali potensi diri, yang unggul dalam pelayanan, serta mampu mendukung pencapaian prestasi akademik dan non-akademik seluruh civitas akademika sekolah.</p>
                 </div>
                 <div class="col-md-4">
                     <h5 style="font-family: 'Playfair Display', serif; font-weight: 700; color: #A51C30; margin-bottom: 20px; letter-spacing: 0.5px;">Misi Kami</h5>
                     <ul class="text-white-50 small p-0" style="list-style-type: none; line-height: 1.8;">
-                        <li class="mb-2" style="display: flex; gap: 8px;"><span style="color: #A51C30;">▪</span> Menyelenggarakan layanan perpustakaan yang prima.</li>
+                        <li class="mb-2" style="display: flex; gap: 8px;"><span style="color: #A51C30;">▪</span> Menyelenggarakan layanan perpustakaan yang prima, berbasis teknologi informasi yang mudah diakses.</li>
+                        <li class="mb-2" style="display: flex; gap: 8px;"><span style="color: #A51C30;">▪</span> Menyediakan koleksi bahan pustaka yang relevan, bermutu, dan up-to-date untuk mendukung proses belajar mengajar.</li>
+                        <li class="mb-2" style="display: flex; gap: 8px;"><span style="color: #A51C30;">▪</span> Menumbuhkembangkan minat baca dan budaya literasi di lingkungan sekolah melalui berbagai program kreatif dan interaktif.</li>
                     </ul>
                 </div>
             </div>
             <hr style="border-top: 1px solid rgba(255,255,255,0.1); margin-top: 40px; margin-bottom: 20px;">
-            <div class="row">
-                <div class="col text-center">
+            <div class="row align-items-center">
+                <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
                     <p class="text-white-50 small mb-0">&copy; 2026 Altikumalanie. All Rights Reserved. Powered by GitHub Pages.</p>
+                </div>
+                <div class="col-md-6 text-center text-md-end">
+                    <a href="https://www.instagram.com/pustaka.smkn4sukabumi/" target="_blank" class="text-white-50 text-decoration-none small style-ig" style="transition: color 0.2s;">
+                        <i class="fab fa-instagram me-2" style="color: #e1306c; font-size: 1.1rem;"></i>@pustaka.smkn4sukabumi
+                    </a>
                 </div>
             </div>
         </div>
